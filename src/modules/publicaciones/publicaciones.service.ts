@@ -61,7 +61,7 @@ export class PublicacionesService{
      */
 
     async findOne(id:string){
-        const publi = await this.publicacionesModel.findById(id).populate('user_id').populate('publicacion_id');
+        const publi = await this.publicacionesModel.findById(id).populate('User_id');
 
         if(!publi){
         throw new NotFoundException('no se encuntra publicacion')
@@ -96,5 +96,16 @@ export class PublicacionesService{
         return ResponseHelper.success(deletepublicacion)
 
     }
-
+        async particalUpdate(id:string,dto:UpdatePublicacionesDto){
+            const role = await this.publicacionesModel.findById(id);
+        
+            if(!role){
+                throw new NotFoundException('Role no encontrado');
+            }
+        
+            const updatedRole = await this.publicacionesModel.findByIdAndUpdate(id,{$set:dto,},{new:true});
+        
+                return ResponseHelper.success(updatedRole,);
+            }
+    
 }

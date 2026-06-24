@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param,Put,Delete, Query, Search } from "@nestjs/common";
+import { Controller, Post, Body, Get, Param,Put,Delete, Query, Search, Patch } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { comentarioService } from "./comentarios.service"; 
 import { CreatecomentarioDto } from "./dto/create-comentarios.dto"; 
@@ -56,5 +56,15 @@ export class comentarioController{
         id:string,
     ){
         return this.service.remove(id);
+    }
+    @Patch(':id')
+    partidalUpdate(
+        @Param('id')
+        id:string,
+
+        @Body()
+        dto:UpdatecomentarioDto,
+    ){
+        return this.service.particalUpdate(id,dto);
     }
 }

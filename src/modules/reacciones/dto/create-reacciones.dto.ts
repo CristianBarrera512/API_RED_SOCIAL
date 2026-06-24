@@ -9,7 +9,7 @@ export class CreateReaccionesDto{
     
     @ApiProperty()
     @IsNotEmpty()
-    user_id!:string
+    User_id!:string
 
     @ApiProperty({
         description:'tipo de reaccion',

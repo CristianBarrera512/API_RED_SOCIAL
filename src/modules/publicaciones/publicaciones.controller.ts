@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param,Put,Delete, Query, Search } from "@nestjs/common";
+import { Controller, Post, Body, Get, Param,Put,Delete, Query, Patch} from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CreatePublicacionesDto } from "./dto/create-publicaciones.dto";
 import { SearchPublicacionesDto } from "./dto/search-publicaciones.dto";
@@ -56,5 +56,15 @@ export class PublicaionesController{
         id:string,
     ){
         return this.service.remove(id);
+    }
+    @Patch(':id')
+    partidalUpdate(
+        @Param('id')
+        id:string,
+
+        @Body()
+        dto:UpdatePublicacionesDto,
+    ){
+        return this.service.particalUpdate(id,dto);
     }
 }

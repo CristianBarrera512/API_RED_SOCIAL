@@ -95,5 +95,16 @@ export class SeguidoresService{
         return ResponseHelper.success(deleteseguir)
 
     }
+        async particalUpdate(id:string,dto:UpdateSeguidoresDto){
+        const role = await this.seguidoresModel.findById(id);
+
+        if(!role){
+            throw new NotFoundException('Role no encontrado');
+        }
+
+        const updatedRole = await this.seguidoresModel.findByIdAndUpdate(id,{$set:dto,},{new:true});
+
+        return ResponseHelper.success(updatedRole,);
+    }
 
 }

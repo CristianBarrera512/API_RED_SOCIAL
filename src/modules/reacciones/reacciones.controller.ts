@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param,Put,Delete, Query, Search } from "@nestjs/common";
+import { Controller, Post, Body, Get, Param,Put,Delete, Query, Patch } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CreateReaccionesDto } from "./dto/create-reacciones.dto";
 import { SearchReaccionesDto } from "./dto/search-reacciones.dto";
@@ -57,4 +57,14 @@ export class ReaccionesController{
     ){
         return this.service.remove(id);
     }
+     @Patch(':id')
+        particalUpdate(
+            @Param('id')
+            id:string,
+    
+            @Body()
+            dto:UpdateReaccionesDto,
+        ){
+            return this.service.particalUpdate(id,dto);
+     };
 }

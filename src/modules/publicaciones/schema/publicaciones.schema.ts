@@ -17,7 +17,7 @@ export class publicaciones{
         ref:'User',
     })
 
-    user_id!:Types.ObjectId;
+    User_id!:Types.ObjectId;
 
     @Prop({
         required:true,

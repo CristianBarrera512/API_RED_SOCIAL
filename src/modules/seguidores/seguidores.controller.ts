@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param,Put,Delete, Query, Search } from "@nestjs/common";
+import { Controller, Post, Body, Get, Param,Put,Delete, Query, Search, Patch } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CreateSeguidoreDto } from "./dto/create-seguidores.dto";
 import { SearchSeguidoreDto } from "./dto/search-seguidores.dto";
@@ -57,5 +57,15 @@ export class SeguidoresController{
         id:string,
     ){
         return this.service.remove(id);
+    }
+     @Patch(':id')
+    partidalUpdate(
+        @Param('id')
+        id:string,
+
+        @Body()
+        dto:UpdateSeguidoresDto,
+    ){
+        return this.service.particalUpdate(id,dto);
     }
 }

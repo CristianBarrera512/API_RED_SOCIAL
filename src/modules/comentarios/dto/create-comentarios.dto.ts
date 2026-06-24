@@ -9,7 +9,7 @@ export class CreatecomentarioDto{
     
     @ApiProperty()
     @IsNotEmpty()
-    user_id!:string
+    User_id!:string
 
 
     @ApiProperty({

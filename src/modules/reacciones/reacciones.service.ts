@@ -61,7 +61,7 @@ export class ReaccionesService{
      */
 
     async findOne(id:string){
-        const Real = await this.ReaccionesModel.findById(id).populate('user_id').populate('publicacion_id');
+        const Real = await this.ReaccionesModel.findById(id).populate('User_id').populate('publicacion_id');
 
         if(!Real){
         throw new NotFoundException('reaccion no encontrado')
@@ -96,5 +96,16 @@ export class ReaccionesService{
         return ResponseHelper.success(deleteReal)
 
     }
+    async particalUpdate(id:string,dto:UpdateReaccionesDto){
+        const role = await this.ReaccionesModel.findById(id);
+    
+        if(!role){
+            throw new NotFoundException('Role no encontrado');
+        }
+    
+        const updatedRole = await this.ReaccionesModel.findByIdAndUpdate(id,{$set:dto,},{new:true});
+    
+            return ResponseHelper.success(updatedRole,);
+        }
 
 }

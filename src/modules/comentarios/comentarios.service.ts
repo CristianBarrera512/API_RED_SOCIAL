@@ -60,7 +60,7 @@ export class comentarioService{
      */
 
     async findOne(id:string){
-        const comentario = await this.comentarioModel.findById(id).populate('user_id').populate('publicacion_id');
+        const comentario = await this.comentarioModel.findById(id).populate('User_id').populate('publicacion_id');
 
         if(!comentario){
         throw new NotFoundException('comentario no encontrado')
@@ -94,6 +94,18 @@ export class comentarioService{
         
         return ResponseHelper.success(deletecomentario)
 
+    }
+
+    async particalUpdate(id:string,dto:UpdatecomentarioDto){
+    const role = await this.comentarioModel.findById(id);
+
+        if(!role){
+        throw new NotFoundException('Role no encontrado');
+        }
+
+        const updatedRole = await this.comentarioModel.findByIdAndUpdate(id,{$set:dto,},{new:true});
+
+        return ResponseHelper.success(updatedRole,);
     }
 
 }
