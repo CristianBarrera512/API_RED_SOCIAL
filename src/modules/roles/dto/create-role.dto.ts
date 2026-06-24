@@ -18,5 +18,5 @@ export class CreateRoleDto{
     })
     @IsString()
     @IsNotEmpty()
-    nombre: string;
+    nombre!: string;
 }

@@ -1,24 +1,24 @@
-import { Controller, Post, Body, Get, Param,Put,Delete, Query} from "@nestjs/common";
+import { Controller, Post, Body, Get, Param,Put,Delete, Query, Search } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { UsuariosService } from "./usuarios.service";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { SearchUserDto } from "./dto/search-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
+import { CreatePublicacionesDto } from "./dto/create-publicaciones.dto";
+import { SearchPublicacionesDto } from "./dto/search-publicaciones.dto";
+import { UpdatePublicacionesDto } from "./dto/update-publicaciones.dto";
+import { PublicacionesService } from "./publicaciones.service";
 
 
-@ApiTags('Usuarios')
-@Controller('Usuarios')
+@ApiTags('Publicaciones')
+@Controller('Publicaiones')
 
-export class UsuariosController{
+export class PublicaionesController{
     constructor(
         private readonly service:
-        UsuariosService,
+        PublicacionesService,
     ){}
 
     @Post()
     create(
         @Body()
-        dto:CreateUserDto
+        dto:CreatePublicacionesDto
     ){
         return this.service.create(dto);
     }
@@ -26,7 +26,7 @@ export class UsuariosController{
     @Get()
     finAll(
         @Query()
-        search:SearchUserDto
+        search:SearchPublicacionesDto
     ){
         return this.service.findAll(search);
     }
@@ -45,7 +45,7 @@ export class UsuariosController{
         id:string,
 
         @Body()
-        dto:UpdateUserDto,
+        dto:UpdatePublicacionesDto
     ){
         return this.service.update(id,dto);
     }

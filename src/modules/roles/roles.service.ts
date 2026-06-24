@@ -20,8 +20,8 @@ export class RolesService {
     async create(
         dto:CreateRoleDto,
     ){
-        const role=
-        await this.roleModel.create(dto);
+        
+        const role= await this.roleModel.create(dto);
         
         return ResponseHelper.success(
             role,
